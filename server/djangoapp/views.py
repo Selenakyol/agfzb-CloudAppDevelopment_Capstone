@@ -10,6 +10,9 @@ from datetime import datetime
 import logging
 import json
 from .restapis import get_dealers_from_cf
+from .restapis import get_dealer_by_id_from_cf 
+from .restapis import get_dealer_reviews_from_cf
+from .restapis import post_request
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -128,7 +131,7 @@ def add_review(request, id):
                 if request.POST["purchasecheck"] == 'on':
                     payload["purchase"] = True
             payload["purchase_date"] = request.POST["purchasedate"]
-            payload["car_make"] = car.car_make.name
+            payload["car_make"] = car.make.name
             payload["car_model"] = car.name
             payload["car_year"] = int(car.year.strftime("%Y"))
 
